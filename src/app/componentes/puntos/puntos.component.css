@@ -1,0 +1,34 @@
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #7eb3ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 10%;
+}
+
+.number {
+    color: white;
+    font-size: calc(2rem + 3vw); /* Combina una base fija con una parte flexible */
+    font-weight: bold;
+    line-height: normal;
+}
+
+.text {
+    color: white;
+    font-size: calc(1rem + 2vw);
+    font-weight: bold;
+    line-height: normal;
+}
+
+.line {
+    width: 10%;
+    height: 4px;
+    background-color: #37b3ee;
+    margin-top: 20px;
+    border-radius: 2px;
+}
