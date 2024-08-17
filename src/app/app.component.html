@@ -15,24 +15,47 @@
       <header>
         <button class="menu-btn" mat-button (click)="drawer.toggle()">
           <span class="material-symbols-outlined">
-          menu
-        </span>
-      </button>
+            menu
+          </span>
+        </button>
         <div class="user-img"></div>
       </header>
       <div class="title">Promoción de carreras - UNSL</div>
+
       <div class="card">
         <div class="card-content">
           <div class="div-puntos"><app-puntos></app-puntos></div>
-          
+
           <div class="div-postas"><app-postas></app-postas></div>
-          
+
         </div>
       </div>
-      <div class="extra-div"><img style="width: 50%; box-shadow: 0 0 5px 5px #888888;" src="../assets/images/banners-promocion-de-carreras.jpeg" /></div>
-      
+      <div class="extra-div"><img style="width: 80%; box-shadow: 0 0 5px 5px #888888;"
+          src="../assets/images/mapa.png" /></div>
+
       <div class="subtitle">Recorrido</div>
-      <div class="extra-div-historial"><app-historial></app-historial></div>
+      <div class="extra-div-historial">
+        <app-historial [historias] = "historias"></app-historial>
+      </div>
+
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-6 text-center">
+            <button class="btn btn-primary w-70 boton-qr" (click)="escanear()">
+              <span class="material-symbols-outlined">
+                qr_code_scanner
+              </span>Escanear</button>
+          </div>
+          <div class="col-6 text-center">
+            <button class="btn btn-secondary w-70 boton-finalizar">
+              <span class="material-symbols-outlined">
+                logout
+              </span>Finalizar
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
