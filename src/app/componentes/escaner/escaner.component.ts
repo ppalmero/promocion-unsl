@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BarcodeFormat } from '@zxing/library';
@@ -12,6 +12,8 @@ import {
 } from '@angular/material/dialog';
 import { ComunicacionService } from '../../servicios/comunicacion.service';
 
+import { HistoriaModelo } from '../../modelos/historia-modelo';
+
 @Component({
   selector: 'app-escaner',
   standalone: true,
@@ -20,7 +22,7 @@ import { ComunicacionService } from '../../servicios/comunicacion.service';
   styleUrl: './escaner.component.css'
 })
 export class EscanerComponent {
-
+  readonly dialogRef = inject(MatDialogRef<EscanerComponent>);
   qrResultString!: string;
   formats: BarcodeFormat[] = [BarcodeFormat.QR_CODE];
 
@@ -29,6 +31,15 @@ export class EscanerComponent {
   }
 
   onCodeResult(resultString: string) {
-    this.comunicacion.leerQR.emit(resultString);
+    let estacion : HistoriaModelo = this.convertirEstacion(resultString);
+    this.comunicacion.leerQR.emit(estacion);
+    this.comunicacion.cargarPuntos.emit(estacion.puntos);
+    this.dialogRef.close();
+  }
+
+  convertirEstacion(texto: string): HistoriaModelo {
+    var splitted = texto.split("#");
+    let estacion: HistoriaModelo = {icon: splitted[0], titulo: splitted[1], subtitulo: splitted[2], hora: Date.now(), puntos: +splitted[4]};
+    return estacion;
   }
 }

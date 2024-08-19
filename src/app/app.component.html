@@ -18,19 +18,23 @@
             menu
           </span>
         </button>
-        <div class="user-img"></div>
+        <button class="user-img" mat-button (click)="login()">
+          <span class="material-symbols-outlined">
+            person
+          </span>
+        </button>
       </header>
-      <div class="title">Promoción de carreras - UNSL</div>
+      <div class="title">Promoción de carreras UNSL</div>
 
       <div class="card">
         <div class="card-content">
-          <div class="div-puntos"><app-puntos></app-puntos></div>
+          <div class="div-puntos"><app-puntos [puntos] = "puntos"></app-puntos></div>
 
-          <div class="div-postas"><app-postas></app-postas></div>
+          <div class="div-postas"><app-postas [postas] = "postas"></app-postas></div>
 
         </div>
       </div>
-      <div class="extra-div"><img style="width: 80%; box-shadow: 0 0 5px 5px #888888;"
+      <div class="extra-div"><img style="width: 100%; box-shadow: 0 0 5px 5px #888888;"
           src="../assets/images/mapa.png" /></div>
 
       <div class="subtitle">Recorrido</div>

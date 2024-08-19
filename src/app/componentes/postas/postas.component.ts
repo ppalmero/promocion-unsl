@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-postas',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './postas.component.css'
 })
 export class PostasComponent {
-
+  @Input() postas: number = 0;
 }

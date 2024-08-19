@@ -1,8 +1,12 @@
 <div class="three-sections">
-    <div class="section-1">27</div>
-    <div class="section-2">
-        <p>Título Principal</p>
-        <span>Descripción Secundaria</span>
+    <div class="section-1">
+        <span class="material-symbols-outlined">
+            {{historia.icon}}
+        </span>
     </div>
-    <div class="section-3">14:30</div>
+    <div class="section-2">
+        <p>{{historia.titulo}}</p>
+        <span>{{historia.subtitulo}}</span>
+    </div>
+    <div class="section-3">{{mascaraService.formatearHorario(historia.hora)}}h</div>
 </div>

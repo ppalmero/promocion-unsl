@@ -1,2 +1,4 @@
-<app-historia></app-historia>
-<app-historia></app-historia>
+<p *ngIf="historias.length == 0" style="font-style: italic; color: black;"> Todavía no has finalizado ninguna etapa.</p>
+<div *ngFor="let historia of historias">
+    <app-historia [historia] = "historia"></app-historia>
+</div>

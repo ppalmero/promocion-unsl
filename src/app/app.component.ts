@@ -10,6 +10,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { EscanerComponent } from './componentes/escaner/escaner.component';
 import { ComunicacionService } from './servicios/comunicacion.service';
 import { HistoriaModelo } from './modelos/historia-modelo';
+import { LoginComponent } from './componentes/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,8 @@ export class AppComponent {
   showFiller = false;
   readonly dialog = inject(MatDialog);
   historias: HistoriaModelo[] = [];
+  puntos: number = 0;
+  postas: number = 0;
 
   constructor(private comunicacion: ComunicacionService){
     this.comunicacion.leerQR.subscribe(
@@ -31,16 +34,35 @@ export class AppComponent {
         this.historias.push(estacion);
       }
     );
+    this.comunicacion.cargarPuntos.subscribe(
+      (p) => {
+        this.puntos += p;
+        this.postas += 1;
+      }
+    )
   }
 
-  escanear(){
-    const dialogRefConsultar = this.dialog.open(EscanerComponent, {
-      height: '50%',
-      width: '50%',
+  login(){
+    const dialogRefConsultar = this.dialog.open(LoginComponent, {
+      height: '500px',
+      width: '500px',
     });
 
     dialogRefConsultar.afterClosed().subscribe(result => {
       console.log(result);
+      //this.historias.push({icon: "house", titulo: "Estación inicial", subtitulo: "primera estación", hora: "12:44"});
+    });
+  }
+
+  escanear(){
+    const dialogRefConsultar = this.dialog.open(EscanerComponent, {
+      height: '500px',
+      width: '500px',
+    });
+
+    dialogRefConsultar.afterClosed().subscribe(result => {
+      console.log(result);
+      //this.historias.push({icon: "house", titulo: "Estación inicial", subtitulo: "primera estación", hora: 0, puntos: 15});
     });
   }
 }

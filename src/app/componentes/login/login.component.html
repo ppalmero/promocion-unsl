@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>Registro de Usuario</h2>
+    <form [formGroup]="registroForm" (ngSubmit)="registrar()">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" formControlName="apellido" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" formControlName="dni" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="escuela">Escuela:</label>
+        <input type="text" id="escuela" formControlName="escuela" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" class="form-control" />
+      </div>
+      <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+  </div>
