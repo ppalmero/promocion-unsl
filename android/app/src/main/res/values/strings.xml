@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Promoción de carreras - UNSL</string>
+    <string name="title_activity_main">Promoción de carreras - UNSL</string>
+    <string name="package_name">com.promocion.unsl</string>
+    <string name="custom_url_scheme">com.promocion.unsl</string>
+</resources>

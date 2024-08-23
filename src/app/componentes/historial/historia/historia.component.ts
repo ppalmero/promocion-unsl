@@ -10,7 +10,7 @@ import { MascaraFechaService } from '../../../servicios/mascara-fecha.service';
   styleUrl: './historia.component.css'
 })
 export class HistoriaComponent {
-  @Input() historia: HistoriaModelo = {icon: "", titulo: "", subtitulo: "", hora: 0, puntos: 0};
+  @Input() historia: HistoriaModelo = {idHistoria: 0, icon: "", titulo: "", subtitulo: "", hora: 0, puntos: 0};
 
   constructor(public mascaraService: MascaraFechaService){
 

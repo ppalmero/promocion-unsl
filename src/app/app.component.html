@@ -13,11 +13,12 @@
 
     <div class="container">
       <header>
-        <button class="menu-btn" mat-button (click)="drawer.toggle()">
+        <!--button class="menu-btn" mat-button (click)="drawer.toggle()">
           <span class="material-symbols-outlined">
             menu
           </span>
-        </button>
+        </button-->
+        <img src="../assets/images/dirinfo.png" class="img-logo"/>
         <button class="user-img" mat-button (click)="login()">
           <span class="material-symbols-outlined">
             person
@@ -25,21 +26,33 @@
         </button>
       </header>
       <div class="title">Promoción de carreras UNSL</div>
+      <!--div class="line"></div-->
 
       <div class="card">
         <div class="card-content">
-          <div class="div-puntos"><app-puntos [puntos] = "puntos"></app-puntos></div>
+          <div class="div-puntos"><app-puntos [puntos]="puntos"></app-puntos></div>
 
-          <div class="div-postas"><app-postas [postas] = "postas"></app-postas></div>
+          <div class="div-postas"><app-postas [postas]="postas"></app-postas></div>
 
         </div>
       </div>
-      <div class="extra-div"><img style="width: 100%; box-shadow: 0 0 5px 5px #888888;"
-          src="../assets/images/mapa.png" /></div>
+
+      <div class="subtitle">Mapa</div>
+      <div class="line"></div>
+
+      <div class="extra-div"><!--img style="width: 100%; box-shadow: 0 0 5px 5px #888888;"
+          src="../assets/images/mapa.png" /-->
+        <img src="../assets/images/mapa.png" alt="Imagen pequeña"
+          (click)="openImageModal('../assets/images/mapa.png')" class="thumbnail" />
+
+        <app-image-modal #imageModal></app-image-modal>
+      </div>
 
       <div class="subtitle">Recorrido</div>
+      <div class="line"></div>
+
       <div class="extra-div-historial">
-        <app-historial [historias] = "historias"></app-historial>
+        <app-historial></app-historial>
       </div>
 
       <div class="container mt-4">
@@ -51,7 +64,7 @@
               </span>Escanear</button>
           </div>
           <div class="col-6 text-center">
-            <button class="btn btn-secondary w-70 boton-finalizar">
+            <button class="btn btn-secondary w-70 boton-finalizar" (click)="finalizar()">
               <span class="material-symbols-outlined">
                 logout
               </span>Finalizar

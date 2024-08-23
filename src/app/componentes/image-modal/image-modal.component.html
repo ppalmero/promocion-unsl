@@ -1,0 +1,5 @@
+<div class="modal" *ngIf="isOpen" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <img [src]="imageSrc" alt="Imagen ampliada"  (click)="closeModal()"/>
+    </div>
+  </div>
