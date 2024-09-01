@@ -18,8 +18,8 @@
       <input type="text" id="escuela" formControlName="escuela" class="form-control" />
     </div>
     <div class="form-group">
-      <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-      <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" class="form-control" />
+      <label for="fechaNacimiento">Correo electrónico:</label>
+      <input type="email" id="fechaNacimiento" formControlName="fechaNacimiento" class="form-control" />
     </div>
     <button type="submit" class="btn btn-primary">{{ comunicacionService.isLogIn() ? 'Actualizar' : 'Registrar' }}</button>
   </form>

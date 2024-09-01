@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { CommonModule } from '@angular/common';
 import { ComunicacionService } from '../../servicios/comunicacion.service';
 import { Usuario } from '../../modelos/usuario';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ import { Usuario } from '../../modelos/usuario';
 })
 
 export class LoginComponent implements OnInit {
+  readonly dialogRef = inject(MatDialogRef<LoginComponent>);
   registroForm: FormGroup;
   //userId: number | null = null; // ID del usuario para editar
   usuarios: any[] = []; // Aquí almacenaremos los usuarios obtenidos
@@ -69,7 +71,8 @@ export class LoginComponent implements OnInit {
         usuario = this.comunicacionService.completarUsuario(usuario);
         this.dbService.update('users', { ...usuario, id: this.comunicacionService.getUserID() }).subscribe(() => {
           alert('Usuario actualizado exitosamente.');
-          this.registroForm.reset();
+          this.dialogRef.close();
+          //this.registroForm.reset();
           //this.userId = null;
         });
       } else {
@@ -79,9 +82,10 @@ export class LoginComponent implements OnInit {
         this.dbService.add('users', usuario).subscribe((key) => {
           console.log('Usuario registrado con ID:', key);
           alert('Usuario registrado exitosamente.');
-          this.registroForm.reset();
+          
           usuario.id = key.id;
           this.comunicacionService.login(usuario);
+          this.dialogRef.close();
         });
       }
     } else {

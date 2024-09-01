@@ -31,9 +31,18 @@ export class EscanerComponent {
   }
 
   onCodeResult(resultString: string) {
-    let estacion : HistoriaModelo = this.convertirEstacion(resultString);
-    this.comunicacion.leerQR.emit(estacion);
+    try {
+      let estacion : HistoriaModelo = this.convertirEstacion(resultString);
+      console.log(estacion);
+      if (Number.isNaN(estacion.idHistoria)){
+        alert("Error al leer el QR");
+      } else {
+        this.comunicacion.leerQR.emit(estacion);
+      }
     //this.comunicacion.cargarPuntos.emit(estacion.puntos);
+    } catch (e) {
+      alert("Error al leer el QR");
+    }
     this.dialogRef.close();
   }
 

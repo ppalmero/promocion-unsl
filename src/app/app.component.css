@@ -6,6 +6,10 @@
   /* The background property is added to clearly distinguish the borders between drawer and main
      content */
   background: #f3f3f3;
+  background-image: url('../assets/images/Encabezado.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: contain;
 }
 
 .example-sidenav-content {
@@ -50,7 +54,7 @@ header {
 
 .img-logo {
   /*height: 5%;*/
-  width: 10%;
+  width: 15%;
 }
 
 .user-img {
@@ -58,7 +62,8 @@ header {
   width: 50px;
   height: 60px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: #fff;  
+  margin-left: 85%;
 }
 
 .boton-qr {
@@ -123,6 +128,7 @@ header {
   align-items: center;
   /*height: 60%;
   background-color: #ffc107;*/
+  margin-top: 35%;
   padding: 0;
 }
 

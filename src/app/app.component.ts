@@ -1,5 +1,5 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,7 +31,7 @@ export class AppComponent {
   puntos: number = 0;
   postas: number = 0;
 
-  constructor(private comunicacion: ComunicacionService) {
+  constructor(private comunicacion: ComunicacionService, private router: Router) {
     this.comunicacion.leerQR.subscribe(
       (estacion) => {
         console.log("estacion ID" + estacion.idHistoria);
@@ -61,6 +61,11 @@ export class AppComponent {
         }
       }
     )
+  }
+
+  redirigir() {
+    console.log("click");
+    this.router.navigate(['estudia']);
   }
 
   login() {
