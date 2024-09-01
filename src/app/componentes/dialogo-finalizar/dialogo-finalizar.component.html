@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Final del recorrido</h2>
 <mat-dialog-content>
   <p style="margin-bottom: 20px;">¿Quieres enviar datos?</p>
-  <qrcode [qrdata]="qrData" style="text-align:center"></qrcode>
+  <qrcode [qrdata]="qrData" [width]="qrSize" style="text-align:center"></qrcode>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button  class="btn btn-secondary" [mat-dialog-close]="false">No</button>

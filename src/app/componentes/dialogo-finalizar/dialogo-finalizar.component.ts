@@ -13,7 +13,7 @@ import { Usuario } from '../../modelos/usuario';
 export class DialogoFinalizarComponent {
   readonly data = inject<Usuario>(MAT_DIALOG_DATA);
   qrData: string = JSON.stringify(this.data);
-  qrSize: number = 256;
+  qrSize: number = 192;
   qrLevel: string = 'M'; // Nivel de corrección de errores: 'L', 'M', 'Q', 'H'
 
 }

@@ -65,7 +65,8 @@ export class AppComponent {
 
   redirigir() {
     console.log("click");
-    this.router.navigate(['estudia']);
+    //this.router.navigate(['estudia']);
+    window.location.href = 'https://estudiainformatica.unsl.edu.ar';
   }
 
   login() {
