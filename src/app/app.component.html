@@ -12,7 +12,8 @@
   <div class="example-sidenav-content">
 
     <div class="container">
-      <header (click)="redirigir()">
+      <header>
+        <img src="../assets/images/Encabezado.png" style="width: 100vw; height: 100%;"/>
         <!--button class="menu-btn" mat-button (click)="drawer.toggle()">
           <span class="material-symbols-outlined">
             menu
@@ -25,8 +26,13 @@
           </span>
         </button>
       </header>
-      <!--div class="title">Promoción de carreras UNSL</div>
-      <div class="line"></div-->
+      <div class="title">
+        <button class="btn btn-info btn-sm" (click)="redirigir()" style="margin-top: 5vh; width: fit-content; border-radius: 20px;">
+          <span class="material-symbols-outlined" style="font-size: small;">
+            info
+          </span> MÁS INFORMACIÓN
+        </button>
+      </div>
 
       <div class="card">
         <div class="card-content">
@@ -42,8 +48,8 @@
 
       <div class="extra-div"><!--img style="width: 100%; box-shadow: 0 0 5px 5px #888888;"
           src="../assets/images/mapa.png" /-->
-        <img src="../assets/images/mapa.png" alt="Imagen pequeña"
-          (click)="openImageModal('../assets/images/mapa.png')" class="thumbnail" />
+        <img src="../assets/images/mapa.png" alt="Imagen pequeña" (click)="openImageModal('../assets/images/mapa.png')"
+          class="thumbnail" />
 
         <app-image-modal #imageModal></app-image-modal>
       </div>
@@ -73,7 +79,7 @@
         </div>
       </div>
 
-      
+
 
     </div>
 
