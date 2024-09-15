@@ -66,6 +66,10 @@ header {
   margin-left: 85%;
 }
 
+.btn-masinfo{
+  width: fit-content; border-radius: 20px; background-color: #296bc3; color: white; font-weight: bold;
+}
+
 .boton-qr {
   border-radius: 10px;
   font-size: calc(1rem + 2vw);
