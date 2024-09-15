@@ -91,7 +91,8 @@ header {
 }
 
 .subtitle,
-.card {
+.card,
+.contacto {
   color: black;
   padding: 15px;
   /*background-color: #f8f9fa;
@@ -185,4 +186,11 @@ header {
 
 .thumbnail:hover {
   transform: scale(1.05);
+}
+
+.contacto {
+  font-size: calc(1rem);
+  font-weight: bold;
+  padding-bottom: 0;
+  text-align: center;
 }

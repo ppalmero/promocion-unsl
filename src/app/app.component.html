@@ -60,6 +60,8 @@
         <app-historial></app-historial>
       </div>
 
+      <div id="liveAlertPlaceholder"></div>
+
       <div class="container mt-4">
         <div class="row">
           <div class="col-6 text-center">
@@ -69,7 +71,7 @@
               </span>Escanear</button>
           </div>
           <div class="col-6 text-center">
-            <button class="btn btn-dark w-70 boton-finalizar" (click)="finalizar()">
+            <button class="btn btn-dark w-70 boton-finalizar" (click)="finalizar()" [disabled]="postas > 4">
               <span class="material-symbols-outlined">
                 logout
               </span>Finalizar
@@ -78,8 +80,7 @@
         </div>
       </div>
 
-
-
+      <div class="contacto">Contactanos: <span class="badge text-bg-primary"><a href="mailto: pablorafaelpalmero@gmail.com" style="color: white;">pablorafaelpalmero&#64;gmail.com</a></span></div>
     </div>
 
   </div>

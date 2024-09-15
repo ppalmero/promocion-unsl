@@ -12,6 +12,10 @@ import { ComunicacionService } from './servicios/comunicacion.service';
 import { LoginComponent } from './componentes/login/login.component';
 import { ImageModalComponent } from './componentes/image-modal/image-modal.component';
 import { DialogoFinalizarComponent } from './componentes/dialogo-finalizar/dialogo-finalizar.component';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore/lite';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +34,8 @@ export class AppComponent {
   //historias: HistoriaModelo[] = [];
   puntos: number = 0;
   postas: number = 0;
+
+  basededatos: any;
 
   constructor(private comunicacion: ComunicacionService, private router: Router) {
     this.comunicacion.leerQR.subscribe(
@@ -61,6 +67,14 @@ export class AppComponent {
         }
       }
     )
+
+    const app = initializeApp(environment.firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    //console.log(analytics);
+
+    this.basededatos = getFirestore(app);
+    console.log(this.getCities());
   }
 
   redirigir() {
@@ -96,25 +110,59 @@ export class AppComponent {
       this.login();
     }
   }
-  
+
   openImageModal(imageSrc: string) {
     this.imageModal.openModal(imageSrc);
   }
 
-  finalizar() {
-    if (this.comunicacion.isLogIn()) {
+  async finalizar() {
+    const alertPlaceholder = document.getElementById('liveAlertPlaceholder')!;
+    const appendAlert = (message: any, type: any) => {
+      const wrapper = document.createElement('div')
+      wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+      ].join('')
+
+      alertPlaceholder.append(wrapper)
+    }
+
+
+    /*const dbRef = ref(this.basededatos, 'usuarios/');
+    set(dbRef, { name: 'item1', value: 'value1' });*/
+    try {
+      const docRef = await addDoc(collection(this.basededatos, "alumnos"), JSON.parse(JSON.stringify(this.comunicacion.usuario)));
+      console.log(docRef);
+      //alert('Tus datos se enviaron con éxito.');
+      appendAlert('Genial, Tus datos se enviaron con éxito.', 'success');
+    } catch (error) {
+      console.error("Error al enviar el documento: ", error);
+      appendAlert('Error al enviar tus datos:', 'danger');
+    }
+
+
+    /*if (this.comunicacion.isLogIn()) {
       const dialogRefConsultar = this.dialog.open(DialogoFinalizarComponent, {
         data: this.comunicacion.usuario,
         height: '500px',
         width: '350px',
       });
-
+  
       dialogRefConsultar.afterClosed().subscribe(result => {
         console.log(result);
         //this.historias.push({icon: "house", titulo: "Estación inicial", subtitulo: "primera estación", hora: 0, puntos: 15});
       });
     } else {
       this.login();
-    }
+    }*/
+  }
+
+  async getCities() {
+    const citiesCol = collection(this.basededatos, 'alumnos');
+    const citySnapshot = await getDocs(citiesCol);
+    const cityList = citySnapshot.docs.map(doc => doc.data());
+    return cityList;
   }
 }
