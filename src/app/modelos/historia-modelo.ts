@@ -4,6 +4,7 @@ export interface HistoriaModelo {
     titulo: string,
     subtitulo: string,
     hora: number,
-    puntos: number;
+    puntos: number,
+    color: string,
 }
 

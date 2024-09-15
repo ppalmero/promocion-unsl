@@ -48,7 +48,7 @@ export class EscanerComponent {
 
   convertirEstacion(texto: string): HistoriaModelo {
     var splitted = texto.split("#");
-    let estacion: HistoriaModelo = {idHistoria: +splitted[0], icon: splitted[1], titulo: splitted[2], subtitulo: splitted[3], hora: Date.now(), puntos: +splitted[5]};
+    let estacion: HistoriaModelo = {idHistoria: +splitted[0], icon: splitted[1], titulo: splitted[2], subtitulo: splitted[3], hora: Date.now(), puntos: +splitted[5], color: splitted[6]};
     //let estacion: HistoriaModelo = {idHistoria: 2, icon: splitted[0], titulo: splitted[1], subtitulo: splitted[2], hora: Date.now(), puntos: +splitted[4]};
     return estacion;
   }

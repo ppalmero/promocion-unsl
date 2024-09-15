@@ -189,8 +189,13 @@ header {
 }
 
 .contacto {
-  font-size: calc(1rem);
+  font-size: calc(1rem+2vh);
   font-weight: bold;
   padding-bottom: 0;
   text-align: center;
+}
+
+.contacto a {
+  font-size: calc(1rem + 1vw);
+  font-weight: bold;
 }
