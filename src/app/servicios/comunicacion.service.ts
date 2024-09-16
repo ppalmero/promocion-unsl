@@ -49,6 +49,7 @@ export class ComunicacionService {
       u.id = this.usuario.id;
       u.keyGen = this.usuario.keyGen;
       u.historias = this.usuario.historias;
+      u.envioDatos = this.usuario.envioDatos;
       //this.loginUsuario.emit(this.usuario);
     }
     return u;
@@ -75,4 +76,11 @@ export class ComunicacionService {
     }
   }
 
+  enviarDatos(){
+    if (this.isLogIn()) {
+      this.usuario.envioDatos = true;
+      this.dbService.update('users', { ...this.usuario, id: this.getUserID() }).subscribe(() => {
+      });
+    } 
+  }
 }

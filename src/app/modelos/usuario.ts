@@ -6,7 +6,8 @@ export interface Usuario {
       apellido: string,
       dni: string,
       escuela: string,
-      fechaNacimiento: string,
+      email: string,
       historias: HistoriaModelo[],
       keyGen: string,
+      envioDatos: boolean,
 }

@@ -1,3 +1,11 @@
+<div id="contenedor-carga" *ngIf="!cargaCompleta">
+  <div style="text-align:center; width: 100%;">
+  <img src="../assets/images/dirinfo.png" alt="Cargando...">
+  <p style="font-style: italic;">Enviando datos...</p>
+  </div>
+  <br />
+</div>
+
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <p>Auto-resizing sidenav</p>
@@ -71,7 +79,7 @@
               </span>Escanear</button>
           </div>
           <div class="col-6 text-center">
-            <button class="btn btn-dark w-70 boton-finalizar" (click)="finalizar()" [disabled]="postas > 4">
+            <button class="btn btn-dark w-70 boton-finalizar" (click)="finalizar()" [disabled]="(postas < 0) || disabledButton">
               <span class="material-symbols-outlined">
                 logout
               </span>Finalizar

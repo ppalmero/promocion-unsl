@@ -16,11 +16,12 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore/lite';
 import { environment } from '../environments/environment';
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatDialogModule, ImageModalComponent,
+  imports: [RouterOutlet, MatDialogModule, ImageModalComponent, NgIf,
     MatSidenavModule, MatButtonModule, MatIconModule, PuntosComponent, PostasComponent, HistorialComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -36,6 +37,8 @@ export class AppComponent {
   postas: number = 0;
 
   basededatos: any;
+  disabledButton: boolean = false;
+  cargaCompleta: boolean = true;
 
   constructor(private comunicacion: ComunicacionService, private router: Router) {
     this.comunicacion.leerQR.subscribe(
@@ -64,6 +67,7 @@ export class AppComponent {
         if (this.comunicacion.tieneHistorias()) {
           this.puntos = this.comunicacion.usuario.historias.map(u => u.puntos).reduce((acc, value) => acc + value, 0);
           this.postas = this.comunicacion.usuario.historias.length;
+          this.disabledButton = this.comunicacion.usuario.envioDatos;
         }
       }
     )
@@ -74,7 +78,7 @@ export class AppComponent {
     //console.log(analytics);
 
     this.basededatos = getFirestore(app);
-    console.log(this.getCities());
+    /*console.log(this.getCities());*/
   }
 
   redirigir() {
@@ -116,6 +120,7 @@ export class AppComponent {
   }
 
   async finalizar() {
+    this.cargaCompleta = false;
     const alertPlaceholder = document.getElementById('liveAlertPlaceholder')!;
     const appendAlert = (message: any, type: any) => {
       const wrapper = document.createElement('div')
@@ -136,10 +141,15 @@ export class AppComponent {
       const docRef = await addDoc(collection(this.basededatos, "alumnos"), JSON.parse(JSON.stringify(this.comunicacion.usuario)));
       console.log(docRef);
       //alert('Tus datos se enviaron con éxito.');
-      appendAlert('Genial, Tus datos se enviaron con éxito.', 'success');
+      appendAlert('Se enviaron tus datos y ya estás participando del sorteo por un increíble premio.', 'success');
+      this.disabledButton = true;
+      this.comunicacion.enviarDatos();
+      this.cargaCompleta = true;
     } catch (error) {
+      this.disabledButton = true;
       console.error("Error al enviar el documento: ", error);
       appendAlert('Error al enviar tus datos:', 'danger');
+      this.cargaCompleta = true;
     }
 
 

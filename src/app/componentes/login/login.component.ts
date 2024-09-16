@@ -79,6 +79,7 @@ export class LoginComponent implements OnInit {
         // Si no hay ID, entonces estamos creando un nuevo registro
         usuario.keyGen = crypto.randomUUID();
         usuario.historias = [];
+        usuario.envioDatos = false;
         this.dbService.add('users', usuario).subscribe((key) => {
           console.log('Usuario registrado con ID:', key);
           alert('Usuario registrado exitosamente.');
