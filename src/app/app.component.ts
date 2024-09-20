@@ -16,12 +16,12 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore/lite';
 import { environment } from '../environments/environment';
-import {NgIf} from "@angular/common";
+import {NgIf, NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatDialogModule, ImageModalComponent, NgIf,
+  imports: [RouterOutlet, MatDialogModule, ImageModalComponent, NgIf, NgClass,
     MatSidenavModule, MatButtonModule, MatIconModule, PuntosComponent, PostasComponent, HistorialComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
